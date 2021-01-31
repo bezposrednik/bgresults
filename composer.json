@@ -1,0 +1,5 @@
+{
+    "require": {
+        "phalcon/dd": "^1.1"
+    }
+}

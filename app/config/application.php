@@ -2,9 +2,9 @@
 
 $configurations['application'] = [
     'language'  => 'en-us',
-    'name'      => 'Access Masters',
-    'title'     => 'Access Masters — Education articles — Masters events — School information',
-    'version'   => '1.0.1.2',
+    'name'      => 'bgresults.com',
+    'title'     => 'Bg results title',
+    'version'   => '1.0.0.0',
     /**
      * Base URL is used to generate all kind of URLs in the application
      */
@@ -13,8 +13,8 @@ $configurations['application'] = [
         'static'    => '/application/',
     ],
     'meta' => [
-        'description' => 'Learn about study options and Masters programmes. Meet school representatives on the Access Masters Tour.',
-        'keywords' => 'Masters study',
+        'description' => 'website description',
+        'keywords' => 'website keywords',
     ],
     /**
      * Default shared folders for the application that will contain features/tools for all modules 
