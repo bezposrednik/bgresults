@@ -1,12 +1,14 @@
 <?php
 
-// namespace Models;
+namespace Models;
 
 use Phalcon\Mvc\Model;
 
-class ModelBase extends Model {
+class ModelBase extends Model
+{
 
-    public function initialize() {
+    public function initialize()
+    {
         // $now = new \DateTime();
 
         // /**
@@ -21,16 +23,16 @@ class ModelBase extends Model {
         //         ['field' => 'status', 'value' => 0]
         // ));
     }
-    
+
     // public function beforeSave() {
     //     if (!isset($this->status)):
     //         $this->status = 1;
     //     endif;
-        
+
     //     if (!isset($this->created)):
     //         $this->created = (new \DateTime())->format('Y-m-d H:i:s');
     //     endif;
-        
+
     //     if (!isset($this->deleted)):
     //         $this->deleted = NULL;
     //     endif;

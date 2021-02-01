@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Phalcon\Escaper;
@@ -120,3 +121,18 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+/**
+ * Registering the services loader
+ */
+$di->set('services', function() {
+    return new \Services\Loader();
+}, true);
+
+
+/**
+ * Registering the services loader
+ */
+$di->set('helpers', function () {
+    return new \Helpers\Loader();
+}, true);
