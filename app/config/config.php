@@ -24,7 +24,7 @@ return new \Phalcon\Config([
         'migrationsDir'  => APP_PATH . '/migrations/',
         'viewsDir'       => APP_PATH . '/views/',
         'helpersDir'     => APP_PATH . '/helpers/',
-        'traitsDir'     => APP_PATH . '/traits/',
+        'traitsDir'      => APP_PATH . '/traits/',
         'pluginsDir'     => APP_PATH . '/plugins/',
         'libraryDir'     => APP_PATH . '/library/',
         'cacheDir'       => BASE_PATH . '/cache/',

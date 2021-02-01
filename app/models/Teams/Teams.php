@@ -2,7 +2,9 @@
 
 namespace Models\Teams;
 
-class Teams extends \ModelBase {
+use Models\ModelBase;
+
+class Teams extends ModelBase {
 
     public function initialize($attributes = []) {
         // parent::initialize(array_merge(['behavior' => ['softdelete' => false]], $attributes));
@@ -11,6 +13,11 @@ class Teams extends \ModelBase {
         // $this->setSchema("LINKS"); /* This is table database name */
 
         $this->setConnectionService('db');
+
+        /**
+         * One to One relation definitions
+         */
+        $this->hasOne("location_id", "\Models\Locations\Locations", "id", ['alias' => 'location']);
         
         /**
          * One to Many relation definitions
@@ -31,5 +38,7 @@ class Teams extends \ModelBase {
     //         $this->created = (new \DateTime())->format('Y-m-d H:i:s');
     //     endif;
     // }
+
+    // public function get
 
 }

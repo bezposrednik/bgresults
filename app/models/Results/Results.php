@@ -2,7 +2,9 @@
 
 namespace Models\Results;
 
-class Results extends \ModelBase {
+use Models\ModelBase;
+
+class Results extends ModelBase {
 
     // public function initialize($attributes = []) {
     //     parent::initialize(array_merge(['behavior' => ['softdelete' => false]], $attributes));

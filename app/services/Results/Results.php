@@ -11,7 +11,7 @@ class Results extends \Services\Abstracts\Service {
     }
 
     public function test() {
-        return 'test success!'
+        return 'test success!';
     }
 
 }

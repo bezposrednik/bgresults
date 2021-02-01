@@ -1,0 +1,26 @@
+<h1>Teams</h1>
+
+<? if(isset($teams) && count($teams)) { ?>
+<table>
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Град</th>
+            <th>Основан</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach ($teams as $team) { ?>
+        <tr>
+            <td><?= $team->name; ?></td>
+            <td><?= $team->location->name; ?></td>
+            <td><?= $team->founded; ?></td>
+            <td><?= $team->description; ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+<? } else { ?>
+    <?= $this->view->partial('_partials/teams/empty'); ?>
+<? } ?>

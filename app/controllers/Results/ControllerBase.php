@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controllers\Teams;
+namespace App\Controllers\Results;
 
 use App\Controllers\ControllerBase as Base;
 
@@ -12,7 +12,7 @@ class ControllerBase extends Base
     {
         // parent::afterExecuteRoute();
 
-        $this->view->setViewsDir($this->view->getViewsDir() . 'teams/');
+        $this->view->setViewsDir($this->view->getViewsDir() . 'results/');
         $this->view->setPartialsDir($this->view->getPartialsDir() . '../');
     }
 }

@@ -129,7 +129,6 @@ $di->set('services', function() {
     return new \Services\Loader();
 }, true);
 
-
 /**
  * Registering the services loader
  */

@@ -25,9 +25,9 @@ $loader->registerNamespaces([
     /** 
      * Register the controllers 
      */
-    'Module\Controllers'                        => $config->application->controllersDir,
-    'Module\Controllers\Teams'                  => $config->application->controllersDir . 'Teams',
-    'Module\Controllers\Results'                => $config->application->controllersDir . 'Results',
+    'App\Controllers'                        => $config->application->controllersDir,
+    'App\Controllers\Teams'                  => $config->application->controllersDir . 'teams',
+    'App\Controllers\Results'                => $config->application->controllersDir . 'results',
 ]);
 
 /**

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Module\Controllers;
+namespace App\Controllers;
 
 use Phalcon\Mvc\Controller;
 
