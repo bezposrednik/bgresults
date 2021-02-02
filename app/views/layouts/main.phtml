@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <?php $this->partial('_partials/layouts/head'); ?>
+
+    <!-- Application -->
+    <?php //echo $this->tag->stylesheetLink('public/assets/styles/tables.css?version=' . $this->config->application->version); 
+    ?>
+
+    <?php //$this->partial('partials/layouts/blocks/scripts'); 
+    ?>
+
+    <!-- Custom Scripts -->
+    <?php //echo $this->tag->javascriptInclude('public/assets/scripts/php.js?version=' . $this->config->application->version); 
+    ?>
+    <?php //echo $this->tag->javascriptInclude('public/assets/scripts/application/jquery-main.js?version=' . $this->config->application->version); 
+    ?>
+</head>
+
+<body>
+
+    <div class="layout-wrapper">
+        <div class="layout-heading">
+            <?php //$this->partial('partials/layouts/heading'); 
+            ?>
+        </div>
+
+        <div class="layout-content">
+            <?php echo $this->getContent() ?>
+        </div>
+        <div class="layout-footer">
+            <p>BGResults.com © <?php echo date('Y'); ?> All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

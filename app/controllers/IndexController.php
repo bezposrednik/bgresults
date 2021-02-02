@@ -8,8 +8,8 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        var_dump('index indexAction');
-        exit();
+        // var_dump('index indexAction');
+        // exit();
     }
 
 }

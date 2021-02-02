@@ -1,0 +1,16 @@
+<?php echo $this->tag->getTitle(); ?>
+
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="keywords" />
+<meta name="description" content="description" />
+<meta name="robots" content="index,follow" />
+<?php //echo $this->tag->tagHtml("link", ["rel" => "shortcut icon", "type" => "image/x-icon", "href" => $this->url->getStatic("public/assets/images/favicon.ico")], false, true, true); ?>
+
+<!-- Fonts -->
+<?php echo $this->tag->stylesheetLink('//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,300italic,700&subset=latin,latin-ext,cyrillic,cyrillic-ext', false); ?>
+
+<!-- Libraries -->
+<?php //echo $this->tag->stylesheetLink('public/assets/styles/libs/font-awesome/4.3.0/css/font-awesome.min.css?version=' . $this->config->application->version); ?>
+
+head
