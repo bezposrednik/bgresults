@@ -58,6 +58,11 @@ $di->setShared('view', function () {
 
     ]);
 
+    /**
+     * Disable rendering levels
+     */
+    $view->disableLevel([View::LEVEL_MAIN_LAYOUT => true]);
+
     return $view;
 });
 

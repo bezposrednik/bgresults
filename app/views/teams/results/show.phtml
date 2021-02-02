@@ -1,0 +1,36 @@
+<h1>Teams / Results / Show</h1>
+
+<? if(isset($team) && count($team)) { ?>
+<table>
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Град</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+            <td><?= $team->name; ?></td>
+            <td><?= $team->description; ?></td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<h2>Резултати:</h2>
+
+<? //var_dump(count($team->results)) ?>
+
+<? foreach ($team->results as $result) { ?>
+<?// $result; ?>
+
+<? var_dump($result->attendance) ?>
+<? } ?>
+
+
+<? } else { ?>
+<?//$this->view->partial('_partials/teams/empty'); ?>
+<? } ?>

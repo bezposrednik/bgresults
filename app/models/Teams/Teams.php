@@ -22,7 +22,9 @@ class Teams extends ModelBase {
         /**
          * One to Many relation definitions
          */
-        // $this->hasMany("id", "\Models\Links\Visits", "link_id", ['alias' => 'visits']);
+        // $this->hasMany("id", "\Models\Results\Results", "link_id", ['alias' => 'visits']);
+
+        $this->hasMany("id", "\Models\Results\Results", "team1_id", ['alias' => 'results']);
     }
 
     // public function getSource() {

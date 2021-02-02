@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <?php $this->partial('_partials/layouts/head'); ?>
+    <?php //$this->partial('_partials/layouts/head'); ?>
 
     <!-- Application -->
     <?php //echo $this->tag->stylesheetLink('public/assets/styles/tables.css?version=' . $this->config->application->version); 
@@ -20,18 +20,22 @@
 
 <body>
 
+<?php //var_dump('main') ?>
+
     <div class="layout-wrapper">
         <div class="layout-heading">
             <?php //$this->partial('partials/layouts/heading'); 
             ?>
         </div>
-
+ddd
         <div class="layout-content">
             <?php echo $this->getContent() ?>
         </div>
         <div class="layout-footer">
             <p>BGResults.com © <?php echo date('Y'); ?> All rights reserved.</p>
         </div>
+
+     
     </div>
 
 </body>

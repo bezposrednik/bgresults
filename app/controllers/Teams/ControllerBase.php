@@ -15,4 +15,9 @@ class ControllerBase extends Base
         $this->view->setViewsDir($this->view->getViewsDir() . 'teams/');
         $this->view->setPartialsDir($this->view->getPartialsDir() . '../');
     }
+
+    public function initialize() {
+        $this->view->setLayoutsDir('../layouts/');
+        $this->view->setLayout('main');
+    }
 }
