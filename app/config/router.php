@@ -71,7 +71,8 @@ $router->add('/teams/:controller', [
 
 $router->add('/teams', [
     'namespace' => 'App\Controllers\Teams',
-    'controller' => 'index'
+    'controller' => 'List',
+    'action' => 'All',
 ]);
 
 /**

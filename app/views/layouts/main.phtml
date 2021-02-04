@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <?php //$this->partial('_partials/layouts/head'); ?>
+    <?php //$this->partial('_partials/layouts/head'); 
+    ?>
 
     <!-- Application -->
     <?php //echo $this->tag->stylesheetLink('public/assets/styles/tables.css?version=' . $this->config->application->version); 
@@ -16,26 +17,29 @@
     ?>
     <?php //echo $this->tag->javascriptInclude('public/assets/scripts/application/jquery-main.js?version=' . $this->config->application->version); 
     ?>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 
-<?php //var_dump('main') ?>
+    <?php //var_dump('main') 
+    ?>
 
     <div class="layout-wrapper">
         <div class="layout-heading">
-            <?php //$this->partial('partials/layouts/heading'); 
-            ?>
+            <?php $this->partial('_partials/layouts/menu'); ?>
         </div>
-ddd
+
         <div class="layout-content">
             <?php echo $this->getContent() ?>
         </div>
+
         <div class="layout-footer">
             <p>BGResults.com © <?php echo date('Y'); ?> All rights reserved.</p>
         </div>
-
-     
     </div>
 
 </body>

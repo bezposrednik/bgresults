@@ -1,0 +1,40 @@
+<h1>Teams</h1>
+
+<pre>
+<? //var_dump($teams->getItems()) ?>
+</pre>
+
+<? if(count($teams->getItems())) { ?>
+<table>
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Град</th>
+            <th>Основан</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? foreach ($teams->getItems() as $team) { ?>
+        <tr>
+            <td><?= $team['name']; ?></td>
+            <td><?// $team->location->name; ?></td>
+            <td><?= $team['founded']; ?></td>
+            <td><?= $team['description']; ?></td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
+
+<div>
+    <a href="<?= $this->url->get('/teams') ?>">First</a>
+    <a href="<?= $this->url->get('/teams/list/all/'. $teams->getPrevious()) ?>">Previous</a>
+    <a href="<?= $this->url->get('/teams/list/all/'. $teams->getNext()) ?>">Next</a>
+    <a href="<?= $this->url->get('/teams/list/all/'. $teams->getLast()) ?>">Last</a>
+
+    <?php echo "Page {$teams->getCurrent()}  of {$teams->getLast()}"; ?>
+</div>
+
+<? } else { ?>
+<?//$this->view->partial('_partials/teams/empty'); ?>
+<? } ?>
