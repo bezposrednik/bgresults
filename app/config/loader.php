@@ -30,13 +30,4 @@ $loader->registerNamespaces([
     'App\Controllers\Results'                => $config->application->controllersDir . 'results',
 ]);
 
-/**
- * Register Files, composer autoloader
- */
-// $loader->registerFiles(
-//     [
-//         APP_PATH . '/vendor/autoload.php'
-//     ]
-// );
-
 $loader->register();
