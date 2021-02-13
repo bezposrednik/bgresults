@@ -1,5 +1,7 @@
 {
-    "name": "workstation/htdocs",
+    "name": "vassiltzankov/bgresults",
+    "description": "Bulgarian football statistics",
+    "type": "project",
     "authors": [
         {
             "name": "Vassil Tzankov",
