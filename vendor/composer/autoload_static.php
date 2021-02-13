@@ -4,15 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit53f90bed64293906ac2a10c73ed9f70c
+class ComposerStaticInitb20e369c40ab2aebcb17e636e92cc5b3
 {
-    public static $files = array (
-        '5b0716b6df725d25312c55716b23362c' => __DIR__ . '/..' . '/phalcon/dd/src/helper.php',
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->classMap = ComposerStaticInitb20e369c40ab2aebcb17e636e92cc5b3::$classMap;
 
         }, null, ClassLoader::class);
     }

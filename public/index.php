@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 use Phalcon\Di\FactoryDefault;
@@ -35,11 +34,6 @@ try {
      * Include Autoloader
      */
     include APP_PATH . '/config/loader.php';
-
-    /**
-     * Include the Vendor Autoloader
-     */
-    include BASE_PATH . '/vendor/autoload.php';
 
     /**
      * Handle the request

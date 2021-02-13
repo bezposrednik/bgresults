@@ -1,5 +1,10 @@
 {
-    "require": {
-        "phalcon/dd": "^1.1"
-    }
+    "name": "workstation/htdocs",
+    "authors": [
+        {
+            "name": "Vassil Tzankov",
+            "email": "vassiltzankov@gmail.com"
+        }
+    ],
+    "require": {}
 }

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 use Phalcon\Escaper;
@@ -57,11 +56,6 @@ $di->setShared('view', function () {
         '.phtml' => PhpEngine::class
 
     ]);
-
-    /**
-     * Disable rendering levels
-     */
-    $view->disableLevel([View::LEVEL_MAIN_LAYOUT => true]);
 
     return $view;
 });
@@ -126,17 +120,3 @@ $di->setShared('session', function () {
 
     return $session;
 });
-
-/**
- * Registering the services loader
- */
-$di->set('services', function() {
-    return new \Services\Loader();
-}, true);
-
-/**
- * Registering the services loader
- */
-$di->set('helpers', function () {
-    return new \Helpers\Loader();
-}, true);
