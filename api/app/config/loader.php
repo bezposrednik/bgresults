@@ -10,14 +10,14 @@ $loader->registerDirs(
         $config->application->controllersDir,
         $config->application->modelsDir,
         // $config->application->servicesDir,
-        // $config->application->traitsDir
+        $config->application->traitsDir
     ]
 );
 
 $loader->registerNamespaces([
     'Api\Models'    => $config->application->modelsDir,
     // 'Services'  => $config->application->servicesDir,
-    // 'Traits'    => $config->application->traitsDir,
+    'Api\Traits'    => $config->application->traitsDir,
     'Api\Controllers' => $config->application->controllersDir,
 ]);
 

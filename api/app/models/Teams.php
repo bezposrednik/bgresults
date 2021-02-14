@@ -2,6 +2,8 @@
 
 namespace Api\Models;
 
+use Api\Models\Locations;
+
 class Teams extends ModelBase
 {
 
@@ -54,6 +56,8 @@ class Teams extends ModelBase
     {
         $this->setSchema("bgresults");
         $this->setSource("teams");
+
+        $this->hasOne('location_id', Locations::class, 'id', ['alias' => 'location']);
 
         $this->hasMany('id', Results::class, 'team1_id', ['alias' => 'results']);
     }

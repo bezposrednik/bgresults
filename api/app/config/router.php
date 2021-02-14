@@ -13,8 +13,9 @@ $teams->setHandler(new Teams());
 $teams->setPrefix('/api');
 
 $teams->get('/teams', 'index');
+$teams->get('/teams/page/{page}', 'index');
+
 $teams->get('/teams/{id}', 'view');
-$teams->get('/teams/{id}/results', 'results');
 $teams->get('/teams/{id}/results/{date_start}/{date_end}', 'results');
 $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}', 'tournamentType');
 $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}/{tournament_id}', 'tournament');

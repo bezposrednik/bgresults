@@ -1,59 +1,113 @@
 <template>
-    <h1>Teams!!!!!</h1>
+    <section>
 
-    <ul>
-        <li v-for="item of teams" :key="item.name">
-            {{ item.name }}
-        </li>
-    </ul>
+        <div v-if="loading" style="background: red;">Loading...</div>
 
-    <button @click="test()">CLick</button>
+        <div v-else>
+            <h1>Teams</h1>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Име</th>
+                        <th>Описание</th>
+                        <th>Основан</th>
+                        <th>Място</th>
+                        <th>Лого</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="item of teams.data.items" :key="item.id">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.founded }}</td>
+                        <td>{{ item.location }}</td>
+                        <td>{{ item.logo }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <Pagination :data="teams.data.pagination"></Pagination>
+
+            <button @click="fetchTeams()">Click</button>
+        </div>
+
+    </section>
 
 </template>
 
 <script>
-    // import HomeHeader from './components/Header'
-
+    import Pagination from '../partials/Pagination.vue';
+    
     export default {
         name: 'Teams',
-        // components: {
-        //     HomeHeader,
-        //     HomeSide
-        // },
-
-        mounted() {
-            // this.fetchTodos()
-        },
-
         data() {
             return {
-
-                teams: [
-                    { name: "cska", url: "ProjectDetail" },
-                    { name: "levski", url: "ProjectDetail" },
-                ]
-
-
+                loading: true,
+                teams: []
             }
         },
-        methods: {
-            test() {
-                console.log('works!');
-                this.axios({
-                    method: 'GET',
-                    url: `api/teams/1`,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-type': 'application/json',
-                    }
-                }).then(function (response) {
-                    console.log(response)
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            }
-        }
+        components: {
+            Pagination,
+        },
 
+        // props: {
+        //     loading: {
+        //         type: Boolean,
+        //         required: true
+        //     }
+        // },
+
+        // setup(props) {
+        //     console.log(props.loading)
+        // },
+
+        methods: {
+            fetchTeams(type) {
+
+                console.log(type);
+
+                let url = `/api/teams`;
+
+                // switch (type) {
+                //     case 'prev':
+                //         url = `/api/teams/page/${page}`;
+                //         break;
+                //     case 'next':
+                //         // code block
+                //         break;
+                //     default:
+                //     break;
+                // }
+
+                // console.log(this.$route.params.id);
+                // let page = this.$route.params.id;
+
+
+
+                this.axios.get(url)
+                    .then((response) => (this.teams = response.data))
+                    .then(() => (this.loading = false))
+                    .catch((error) => (console.log(error)));
+            },
+
+            // pagination(page) {
+            //     const url = `/api/teams/page/${page}`;
+
+            //     this.axios.get(url)
+            //         .then((response) => (this.teams = response.data))
+            //         .then(() => (this.loading = false))
+            //         .catch((error) => (console.log(error)));
+            // }
+
+
+
+        },
+        mounted() {
+            this.fetchTeams();
+        },
 
     }
 </script>
