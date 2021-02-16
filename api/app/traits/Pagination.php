@@ -10,17 +10,20 @@ class Pagination
     {
         $data = [];
 
-        $data['last'] = ceil($count / $limit);
-        $data['start'] = $page - 1;
+        $data['limit'] = (int) $limit;
+        $data['page'] = (int) $page;
+        $data['last'] = (int) ceil($count / $limit);
+        $data['offset'] = (int) ($page - 1) * $data['limit'];
+        $data['prev'] = (int) $page - 1;
+        $data['next'] = (int) $page + 1;
 
-        $data['limit'] = $limit;
-        
+        if($page <= 1) {
+            $data['prev'] = 1;
+        }
 
-        
-        $data['offset'] = ($page - 1) * $data['limit'];
-        $data['prev'] = $page - 1;
-        $data['next'] = $page + 1;
-        
+        if($page >= $data['last']) {
+            $data['next'] = $data['last'];
+        }
 
         return $data;
     }

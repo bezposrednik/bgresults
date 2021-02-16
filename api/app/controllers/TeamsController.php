@@ -15,69 +15,21 @@ class TeamsController extends ControllerBase
 {
     public function index($page = 1)
     {
+        $limit = 2;
+
         if (!(int) $page) {
             $response = $this->response->setJsonContent(['status' => 'ERROR', 'data'   => []]);
             return $response;
         }
 
-        /**
-         * Get the total count
-         */
         $count = Teams::count("status = 1");
-
-        $limit = 2;
-
         $pagination = Pagination::generate($limit, $page, $count);
-
-        // var_dump($pagination);
-        // exit();
-
         $teams = Teams::find([
             'conditions' => 'status = :status:',
             'bind' => ['status' => 1],
             'limit' => $pagination['limit'],
             'offset' => $pagination['offset']
         ]);
-
-        // var_dump($teams->toArray());
-        // exit();
-
-        // $prev = (($page - 1) - 1) * $limit;
-        // $next = (($page + 1) - 1) * $limit;
-        
-
-        // $result = $connection->query("SELECT * FROM robots ORDER BY name");
-        // echo 'There are ', $result->numRows(), ' rows in the resulset';
-
-        // $sql = 'SELECT COUNT(*) FROM city USE INDEX(PRIMARY)';
-
-        // $result = $connection->query(
-        //     $sql,
-        //     [
-        //         1 => 4,
-        //     ]
-        // );
-
-
-        // var_dump($teams->toArray());
-        // exit();
-
-
-        // $paginator   = new Paginator([
-        //     "model"      => Teams::class,
-        //     "parameters" => [
-        //         // "inv_cst_id = :cst_id:",
-        //         // "bind" => [
-        //         //     "cst_id" => 1
-        //         // ],
-        //         "order" => "name"
-        //     ],
-        //     "limit"      => 2,
-        //     "page"       => $page
-        // ]);
-
-        // $teams = $paginator->paginate();
-
 
         $data = ['pagination' => $pagination];
         foreach ($teams as $key => $team) {
