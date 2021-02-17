@@ -1,30 +1,54 @@
 <template>
+
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Header</h1>
-                    <div id="nav">
-                        <router-link to="/">Home</router-link> |
-                        <router-link to="/teams">Teams</router-link> |
-                        <router-link to="/results">Results</router-link> |
-                        <router-link to="/tournaments">Tournaments</router-link>
-                    </div>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <router-link to="/" class="nav-link">Начало</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/teams" class="nav-link">Отбори</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/results" class="nav-link">Резултати</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/tournaments" class="nav-link">Турнири</router-link>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Jumbotron -->
+        <div class="p-5 text-center bg-light">
+            <h1 class="mb-3">Heading</h1>
+            <h4 class="mb-3">Subheading</h4>
+            <a class="btn btn-primary" href="" role="button">Call to action</a>
         </div>
+        <!-- Jumbotron -->
     </header>
+
 </template>
 
 <script>
-    // import HomeHeader from './components/Header'
-
     export default {
-    
 
     }
 </script>
 
 <style>
+    .router-link-active {
+        /* background: red; */
+    }
 
 </style>

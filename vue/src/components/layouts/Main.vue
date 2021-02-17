@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main style="margin-bottom: 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -11,8 +11,6 @@
 </template>
 
 <script>
-    // import HomeHeader from './components/Header'
-    // import Teams from '../components/views/Teams.vue';
     export default {
 
     }

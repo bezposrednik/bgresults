@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="item of teams.data.items" :key="item.id">
-                        <td>{{ item.name }}</td>
+                        <td><router-link :to="`/teams/${item.id}/${item.url}`" class="nav-link">{{ item.name }}</router-link></td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.founded }}</td>
                         <td>{{ item.location }}</td>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import Pagination from '../partials/Pagination.vue';
+    import Pagination from '../../partials/Pagination.vue';
 
     export default {
         name: 'Teams',
