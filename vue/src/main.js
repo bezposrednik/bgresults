@@ -6,6 +6,9 @@ import Axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
 
+// import some global styles
+// import './styles/style.scss'
+
 const app = createApp(App);
 
 app.use(Router);

@@ -47,38 +47,50 @@ class TeamsController extends ControllerBase
         return $response;
     }
 
-    public function view($id)
+    public function detailsAction($url)
     {
-        $team = Teams::findFirst($id);
+        $item = Teams::findFirst(['conditions' => 'url = :url:', 'bind' => ['url' => $url]]);
 
-        var_dump($team);
-        exit();
+        $data = [];
+        $data['id'] = (int) $item->id;
+        $data['url'] = $item->url;
+        $data['name'] = $item->name;
+        $data['description'] = $item->description;
+        $data['founded'] = $item->founded;
+        $data['location'] = $item->location->name;
+        $data['logo'] = $item->logo;
 
-        $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $team]);
+        $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 
         return $response;
     }
 
-    public function results($id, $date_start = null, $date_end = null)
+    public function resultsAction($url, $date_start = null, $date_end = null)
     {
+        $item = Teams::findFirst(['conditions' => 'url = :url:', 'bind' => ['url' => $url]]);
 
-        $data = [];
-        $response = $this->response->setJsonContent(['status' => 'NOT FOUND', 'data' => $data]);
-
-        $team = Teams::findFirst(['conditions' => 'id = :id:', 'bind' => ['id' => $id]]);
-        if (!isset($team)) return $response;
-
-        // var_dump(isset($team));
-        // exit();
+        if (!isset($item)) return $this->response->setJsonContent(['status' => 'NOT FOUND', 'data' => []]);
 
         if (!isset($date_start) && !isset($date_end)) {
             $date_start = '1984-02-13';
-            $date_end = '2021-02-13';
+            $date_end = '2021-08-13';
         }
 
-        $data = $team->getResults($date_start, $date_end);
+        $results = $item->getResults($date_start, $date_end);
 
-        // var_dump($team->results->toArray());
+        $data = [];
+        foreach ($results as $result) {
+            $data['id'] = (int) $result->id;
+            $data['date'] = $result->date;
+            $data['team1_id'] = $result->team1->name;
+            $data['team2_id'] = $result->team2->name;
+            // $data['description'] = $result->description;
+            // $data['founded'] = $result->founded;
+            // $data['location'] = $result->location->name;
+            // $data['logo'] = $result->logo;
+        }
+
+        // var_dump($data);
         // exit();
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);

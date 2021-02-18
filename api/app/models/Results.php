@@ -54,8 +54,8 @@ class Results extends ModelBase
     {
         $this->setSchema("bgresults");
         $this->setSource("results");
+
+        // $this->belongsTo('team1_id', Teams::class, 'id', ['alias' => 'team']);
+
     }
-
-    
-
 }

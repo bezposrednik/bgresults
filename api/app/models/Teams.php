@@ -17,6 +17,12 @@ class Teams extends ModelBase
      *
      * @var string
      */
+    public $url;
+
+    /**
+     *
+     * @var string
+     */
     public $name;
 
     /**

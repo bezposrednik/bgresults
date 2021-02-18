@@ -12,10 +12,10 @@
                 <div class="collapse navbar-collapse" id="navbarExample01">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <router-link to="/" class="nav-link">Начало</router-link>
+                            <router-link to="/" class="nav-link" active-class="active">Начало</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/teams" class="nav-link">Отбори</router-link>
+                            <router-link to="/teams" :class="{'active': menuActive('/teams'), 'nav-link': true} ">Отбори</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/results" class="nav-link">Резултати</router-link>
@@ -42,13 +42,20 @@
 
 <script>
     export default {
-
+        methods: {
+            menuActive(path) {
+                return this.$route.path.startsWith(path)
+            }
+        }
     }
 </script>
 
-<style>
-    .router-link-active {
-        /* background: red; */
-    }
+<style lang="scss">
+    .active {
+        background: red;
 
+        p {
+            color: red;
+        }
+    }
 </style>

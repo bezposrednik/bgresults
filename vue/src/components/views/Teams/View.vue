@@ -1,55 +1,59 @@
 <template>
     <section>
 
-        <div v-if="loading" style="background: red;">Loading...</div>
+        <!-- <div v-if="loading" style="background: red;">Loading...</div> -->
 
-        <div v-else>
-           Team / Info
-           Team / Results
-           Team / Statistics
-        </div>
+        <!-- <div v-else> -->
+        <Details :url="this.$route.params.url"></Details>
+
+        <Results :url="this.$route.params.url"></Results>
+
+        <!-- </div> -->
 
     </section>
 
 </template>
 
 <script>
-    
+
+    import Details from '../../partials/Teams/Details.vue';
+    import Results from '../../partials/Teams/Results.vue';
 
     export default {
-        name: 'Teams',
+        name: 'TeamView',
+        components: {
+            Details,
+            Results
+        },
         data() {
             return {
-                page: 1,
-                loading: true,
-                url: `/api/teams`
+                // id: 0,
+                // loading: true,
+                // url: `/api/teams/${this.$route.params.id}`
             }
         },
-        components: {
-            
-        },
-        methods: {
-            fetchTeams(page = 1) {
-                this.axios.get(`${this.url}/page/${page}`)
-                    .then((response) => {
-                        this.$store.state.content = response.data;
-                        // this.$store.commit('load');
-                    })
-                    .then(() => (this.loading = false))
-                    .catch((error) => (console.log(error)));
-            },
-        },
+        // methods: {
+        //     fetchTeam() {
+        //         this.axios.get(this.url)
+        //             .then((response) => {
+        //                 this.$store.state.content = response.data.data;
+        //                 // this.$store.commit('load');
+        //                 console.log(response.data);
+        //             })
+        //             .then(() => (this.loading = false))
+        //             .catch((error) => (console.log(error)));
+        //     },
+        // },
         mounted() {
-            this.fetchTeams();
+            // this.fetchTeam();
+            // console.log(`${this.$route.params.id}`);
         },
-        computed: {
-            teams() {
-                return this.$store.state.content;
-            }
-        }
+        // computed: {
+        //     item() {
+        //         return this.$store.state.content;
+        //     }
+        // }
     }
 </script>
 
-<style>
-
-</style>
+<!-- <style src="./assets/scss/_general.scss" lang="scss"></style> -->
