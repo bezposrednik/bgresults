@@ -7,6 +7,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql;
 // use Api\Models\Config as Config;
 use Api\Models\Teams as Teams;
 
+
 use Api\Traits\Pagination;
 
 use Phalcon\Paginator\Adapter\Model as Paginator;
@@ -65,7 +66,7 @@ class TeamsController extends ControllerBase
         return $response;
     }
 
-    public function resultsAction($url, $date_start = null, $date_end = null)
+    public function resultsAction($url = null, $type = 'all', $date_start = null, $date_end = null)
     {
         $item = Teams::findFirst(['conditions' => 'url = :url:', 'bind' => ['url' => $url]]);
 
@@ -76,14 +77,32 @@ class TeamsController extends ControllerBase
             $date_end = '2021-08-13';
         }
 
-        $results = $item->getResults($date_start, $date_end);
+        switch ($type) {
+            case 'all':
+                $results = $item->getResults($date_start, $date_end);
+                break;
+            case 'home':
+                $results = $item->getHomeResults($date_start, $date_end);
+                break;
+            case 'away':
+                $results = $item->getAwayResults($date_start, $date_end);
+                break;
+            default:
+                return [];
+                break;
+        }
 
         $data = [];
-        foreach ($results as $result) {
-            $data['id'] = (int) $result->id;
-            $data['date'] = $result->date;
-            $data['team1_id'] = $result->team1->name;
-            $data['team2_id'] = $result->team2->name;
+        foreach ($results as $key => $result) {
+
+            $data[$key]['id'] = (int) $result->id;
+            $data[$key]['date'] = $result->date;
+            $data[$key]['team1_id'] = $result->team1->name;
+            $data[$key]['team1_goals'] = $result->team1_goals;
+            $data[$key]['team2_id'] = $result->team2->name;
+            $data[$key]['team2_goals'] = $result->team2_goals;
+            $data[$key]['stadium'] = $result->stadium->name;
+            $data[$key]['tournament'] = $result->tournament->name;
             // $data['description'] = $result->description;
             // $data['founded'] = $result->founded;
             // $data['location'] = $result->location->name;
@@ -92,6 +111,7 @@ class TeamsController extends ControllerBase
 
         // var_dump($data);
         // exit();
+
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 

@@ -56,6 +56,7 @@
                 this.axios.get(`${this.url}/page/${page}`)
                     .then((response) => {
                         this.$store.state.content = response.data;
+                        console.log(response.data);
                         // this.$store.commit('load');
                     })
                     .then(() => (this.loading = false))

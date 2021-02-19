@@ -3,56 +3,18 @@
 namespace Api\Models;
 
 use Api\Models\Locations;
+use Api\Models\Results as Results;
 
 class Teams extends ModelBase
 {
 
-    /**
-     *
-     * @var integer
-     */
     public $id;
-
-    /**
-     *
-     * @var string
-     */
     public $url;
-
-    /**
-     *
-     * @var string
-     */
     public $name;
-
-    /**
-     *
-     * @var string
-     */
     public $description;
-
-    /**
-     *
-     * @var string
-     */
     public $founded;
-
-    /**
-     *
-     * @var integer
-     */
     public $location_id;
-
-    /**
-     *
-     * @var string
-     */
     public $logo;
-
-    /**
-     *
-     * @var string
-     */
     public $status;
 
     /**
@@ -64,13 +26,33 @@ class Teams extends ModelBase
         $this->setSource("teams");
 
         $this->hasOne('location_id', Locations::class, 'id', ['alias' => 'location']);
+        $this->hasOne('tournament_id', Tournaments::class, 'id', ['alias' => 'tournament']);
 
-        $this->hasMany('id', Results::class, 'team1_id', ['alias' => 'results']);
+        $this->hasMany('id', Results::class, 'team1_id', ['alias' => 'team1_results']);
+        $this->hasMany('id', Results::class, 'team2_id', ['alias' => 'team2_results']);
     }
 
-    public function getResults($date_start = null, $date_end = '') {
+    public function getResults($date_start = null, $date_end = null)
+    {
+        $filter = 'team1_id = :team1_id: OR team2_id = :team2_id: AND date BETWEEN :date_start: AND :date_end:';
+        $data = Results::find([
+            'conditions' => $filter,
+            'bind' => ['team1_id' => $this->id, 'team2_id' => $this->id, 'date_start' => $date_start, 'date_end' => $date_end],
+            'order' => 'date desc'
+        ]);
+
+        return $data;
+    }
+
+    public function getHomeResults($date_start = null, $date_end = null)
+    {
         $filter = "date BETWEEN '$date_start' AND '$date_end'";
-        return $this->getRelated('results', [$filter]);
+        return $this->getRelated('team1_results', [$filter]);
     }
 
+    public function getAwayResults($date_start = null, $date_end = null)
+    {
+        $filter = "date BETWEEN '$date_start' AND '$date_end'";
+        return $this->getRelated('team2_results', [$filter]);
+    }
 }

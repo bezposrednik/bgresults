@@ -5,46 +5,12 @@ namespace Api\Models;
 class Results extends ModelBase
 {
 
-    /**
-     *
-     * @var integer
-     */
     public $id;
-
-    /**
-     *
-     * @var string
-     */
     public $name;
-
-    /**
-     *
-     * @var string
-     */
     public $description;
-
-    /**
-     *
-     * @var string
-     */
     public $founded;
-
-    /**
-     *
-     * @var integer
-     */
     public $location_id;
-
-    /**
-     *
-     * @var string
-     */
     public $logo;
-
-    /**
-     *
-     * @var string
-     */
     public $status;
 
     /**
@@ -55,7 +21,12 @@ class Results extends ModelBase
         $this->setSchema("bgresults");
         $this->setSource("results");
 
-        // $this->belongsTo('team1_id', Teams::class, 'id', ['alias' => 'team']);
+        $this->belongsTo('team1_id', Teams::class, 'id', ['alias' => 'team1']);
+        $this->belongsTo('team2_id', Teams::class, 'id', ['alias' => 'team2']);
+
+        $this->belongsTo('stadium_id', Stadiums::class, 'id', ['alias' => 'stadium']);
+        $this->belongsTo('tournament_id', Tournaments::class, 'id', ['alias' => 'tournament']);
+
 
     }
 }
