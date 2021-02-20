@@ -17,15 +17,11 @@ $di->setShared('response', function () {
     return $response;
 });
 
-/** Common config */
 $di->setShared('config', $config);
 
-/**
- * Shared configuration service
- */
-// $di->setShared('config', function () {
-//     return include APP_PATH . "/config/config.php";
-// });
+$di->setShared('settings', function () {
+    return include APP_PATH . "/config/settings.php";
+});
 
 /**
  * The URL component is used to generate all kind of urls in the application

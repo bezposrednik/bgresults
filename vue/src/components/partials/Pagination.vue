@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "Child",
+        name: 'Pagination',
         props: {
             url: String,
             pagination: Object

@@ -2,7 +2,7 @@
 
 namespace Api\Models;
 
-class Tournaments extends \Phalcon\Mvc\Model
+class Tournaments extends ModelBase
 {
 
     public $id;
@@ -18,7 +18,6 @@ class Tournaments extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->setSchema("bgresults");
-        $this->setSource("Tournaments");
+        $this->setSource("tournaments");
     }
-
 }

@@ -2,19 +2,12 @@
 
 namespace Api\Controllers;
 
-use Phalcon\Db\Adapter\Pdo\Mysql;
-
-// use Api\Models\Config as Config;
-use Api\Models\Teams as Teams;
-
-
 use Api\Traits\Pagination;
-
-use Phalcon\Paginator\Adapter\Model as Paginator;
+use Api\Models\Teams;
 
 class TeamsController extends ControllerBase
 {
-    public function index($page = 1)
+    public function list($page = 1)
     {
         $limit = 2;
 
@@ -60,13 +53,17 @@ class TeamsController extends ControllerBase
         $data['founded'] = $item->founded;
         $data['location'] = $item->location->name;
         $data['logo'] = $item->logo;
+        $data['stadium'] = $item->stadium->name;
+        
+        // var_dump($data);
+        // exit();
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 
         return $response;
     }
 
-    public function resultsAction($url = null, $type = 'all', $date_start = null, $date_end = null)
+    public function resultsAction($url = null, $type = 'all', $page = 1, $date_start = null, $date_end = null)
     {
         $item = Teams::findFirst(['conditions' => 'url = :url:', 'bind' => ['url' => $url]]);
 
@@ -77,41 +74,37 @@ class TeamsController extends ControllerBase
             $date_end = '2021-08-13';
         }
 
+        $limit = $this->settings->teams->pagination->limit;
+
         switch ($type) {
             case 'all':
-                $results = $item->getResults($date_start, $date_end);
+                $results = $item->getResults($limit, $page, $date_start, $date_end);
                 break;
             case 'home':
-                $results = $item->getHomeResults($date_start, $date_end);
+                $results = $item->getHomeResults($limit, $page, $date_start, $date_end);
                 break;
             case 'away':
-                $results = $item->getAwayResults($date_start, $date_end);
+                $results = $item->getAwayResults($limit, $page, $date_start, $date_end);
                 break;
             default:
-                return [];
+                return $this->response->setJsonContent(['status' => 'NOT-FOUND', 'data' => []]);
                 break;
         }
 
         $data = [];
-        foreach ($results as $key => $result) {
-
-            $data[$key]['id'] = (int) $result->id;
-            $data[$key]['date'] = $result->date;
-            $data[$key]['team1_id'] = $result->team1->name;
-            $data[$key]['team1_goals'] = $result->team1_goals;
-            $data[$key]['team2_id'] = $result->team2->name;
-            $data[$key]['team2_goals'] = $result->team2_goals;
-            $data[$key]['stadium'] = $result->stadium->name;
-            $data[$key]['tournament'] = $result->tournament->name;
-            // $data['description'] = $result->description;
-            // $data['founded'] = $result->founded;
-            // $data['location'] = $result->location->name;
-            // $data['logo'] = $result->logo;
+        $data = ['pagination' => $results['pagination']];
+        foreach ($results['data'] as $key => $result) {
+            $data['items'][$key]['id'] = (int) $result->id;
+            $data['items'][$key]['date'] = $result->date;
+            $data['items'][$key]['team1_id'] = $result->team1->name;
+            $data['items'][$key]['team1_goals'] = $result->team1_goals;
+            $data['items'][$key]['team2_id'] = $result->team2->name;
+            $data['items'][$key]['team2_goals'] = $result->team2_goals;
+            $data['items'][$key]['stadium'] = $result->stadium->name;
+            $data['items'][$key]['tournament'] = $result->tournament->name;
+            $data['items'][$key]['attendance'] = $result->attendance;
+            $data['items'][$key]['description'] = $result->description;
         }
-
-        // var_dump($data);
-        // exit();
-
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 

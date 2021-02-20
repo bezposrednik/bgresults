@@ -8,6 +8,8 @@
 
         <Results :url="this.$route.params.url"></Results>
 
+        <h2></h2>
+
         <!-- </div> -->
 
     </section>

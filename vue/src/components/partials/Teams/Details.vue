@@ -11,6 +11,7 @@
                     <th>Основан</th>
                     <th>Място</th>
                     <th>Лого</th>
+                    <th>Стадион</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ item.founded }}</td>
                     <td>{{ item.location }}</td>
                     <td>{{ item.logo }}</td>
+                    <td>{{ item.stadium }}</td>
                 </tr>
             </tbody>
         </table>

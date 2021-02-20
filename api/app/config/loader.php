@@ -21,4 +21,13 @@ $loader->registerNamespaces([
     'Api\Controllers' => $config->application->controllersDir,
 ]);
 
+
+$loader->registerFiles(
+    [
+        'config/settings.php'
+    ]
+);
+
+
+
 $loader->register();

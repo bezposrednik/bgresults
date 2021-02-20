@@ -15,7 +15,7 @@ try {
     $config = include APP_PATH . "/config/config.php";
 
     // Autoloading classes
-    include APP_PATH . '/config/loader.php';
+    require APP_PATH . '/config/loader.php';
 
     // The FactoryDefault Dependency Injector
     $di = new FactoryDefault();
@@ -27,11 +27,10 @@ try {
 	$app->setDI($di);
 
     // Load services
-    include APP_PATH . '/config/services.php';
+    require APP_PATH . '/config/services.php';
 
     // Setting up routing
-    include APP_PATH . '/config/router.php';
-    // $app->setService('router', $router, true);
+    require APP_PATH . '/config/router.php';
 
     // Handle the request
     $app->handle($_SERVER["REQUEST_URI"]);

@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-import Home from '../components/views/Home.vue';
+import Home from '../components/views/Home/View.vue';
 import TeamsList from '../components/views/Teams/List.vue';
 import TeamView from '../components/views/Teams/View.vue';
 import Results from '../components/views/Results.vue';

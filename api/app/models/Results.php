@@ -2,6 +2,9 @@
 
 namespace Api\Models;
 
+use Api\Models\Tournaments;
+
+
 class Results extends ModelBase
 {
 

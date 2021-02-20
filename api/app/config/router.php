@@ -12,10 +12,12 @@ $teams = new MicroCollection();
 $teams->setHandler(new Teams());
 $teams->setPrefix('/api');
 
-$teams->get('/teams', 'index');
-$teams->get('/teams/page/{page}', 'index');
+$teams->get('/teams', 'list');
+$teams->get('/teams/page/{page}', 'list');
 $teams->get('/teams/details/{url}', 'detailsAction');
+$teams->get('/teams/results/{url}', 'resultsAction');
 $teams->get('/teams/results/{url}/{type}', 'resultsAction');
+$teams->get('/teams/results/{url}/{type}/page/{page}', 'resultsAction');
 
 // $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}', 'tournamentType');
 // $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}/{tournament_id}', 'tournament');
