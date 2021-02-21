@@ -19,6 +19,7 @@ $teams->get('/teams/results/{url}', 'resultsAction');
 $teams->get('/teams/results/{url}/{type}', 'resultsAction');
 $teams->get('/teams/results/{url}/{type}/page/{page}', 'resultsAction');
 
+
 // $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}', 'tournamentType');
 // $teams->get('/teams/{id}/results/{date_start}/{date_end}/{tournament_type_id}/{tournament_id}', 'tournament');
 

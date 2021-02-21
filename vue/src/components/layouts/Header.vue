@@ -23,6 +23,9 @@
                         <li class="nav-item">
                             <router-link to="/tournaments" class="nav-link">Турнири</router-link>
                         </li>
+                        <li class="nav-item">
+                            <router-link to="/standings" class="nav-link">Класиране</router-link>
+                        </li>
                     </ul>
                 </div>
             </div>

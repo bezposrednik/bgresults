@@ -1,25 +1,30 @@
 <template>
     <div>
-        <h1>Начало</h1>
 
-        <h2>Мачове на живо</h2>
+        <LiveResults></LiveResults>
 
-        <h2>Последни резултати</h2>
+        <LatestResults></LatestResults>
 
-        <h2>Предстоящи мачове</h2>
+        <UpcomingResults></UpcomingResults>
 
-        <h2>Класиране</h2>
-
-
+        <Standings></Standings>
 
     </div>
 </template>
 
 <script>
-    // import HomeHeader from './components/Header'
+    import LiveResults from '../../partials/Home/LiveResults.vue';
+    import LatestResults from '../../partials/Home/LatestResults.vue';
+    import UpcomingResults from '../../partials/Home/UpcomingResults.vue';
+    import Standings from '../../partials/Home/Standings.vue';
 
     export default {
-
+        components: {
+            LatestResults,
+            LiveResults,
+            UpcomingResults,
+            Standings
+        }
 
     }
 </script>
