@@ -6,9 +6,9 @@
         <!-- <div v-else> -->
         <Details :url="this.$route.params.url"></Details>
 
-        <Results :url="this.$route.params.url"></Results>
+        <Filters></Filters>
 
-        <h2></h2>
+        <Results :url="this.$route.params.url"></Results>
 
         <!-- </div> -->
 
@@ -19,13 +19,15 @@
 <script>
 
     import Details from '../../partials/Teams/Details.vue';
+    import Filters from '../../partials/Teams/Filters.vue';
     import Results from '../../partials/Teams/Results.vue';
 
     export default {
         name: 'TeamView',
         components: {
             Details,
-            Results
+            Results,
+            Filters
         },
         data() {
             return {

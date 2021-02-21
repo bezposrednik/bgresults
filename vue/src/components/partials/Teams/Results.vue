@@ -2,60 +2,6 @@
     <section>
         <h2>Резултати</h2>
 
-        <div class="row">
-            <div class="col-md-3">
-                По тип:
-                <select class="form-select" aria-label="Default select example">
-                    <option >Всички</option>
-                    <option value="1" selected>Домакин</option>
-                    <option value="2">Гост</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                По сезон:
-                <select class="form-select" aria-label="Default select example">
-
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>2020/2021</option>
-                    <option value="2">2019/2020</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                По стадион:
-                <select class="form-select" aria-label="Default select example">
-
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>Васил Левски</option>
-                    <option value="2">Българска армия</option>
-                    <option value="3">Георги Аспарухов</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                По турнир:
-                <select class="form-select" aria-label="Default select example">
-
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>Шампионат</option>
-                    <option value="2">Купа на България</option>
-                    <option value="3">Супер купа на България</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                По дата:
-                <input type="text" class="form-control"> до 
-                <input type="text" class="form-control">
-            </div>
-
-            <div class="col-md-3">
-                По голове:
-                <input type="text" class="form-control"> до 
-                <input type="text" class="form-control">
-            </div>
-        </div>
-
-
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -124,7 +70,7 @@
             }
         },
         mounted() {
-            console.log(this.url);
+            // console.log(this.url);
             this.load();
         }
     }

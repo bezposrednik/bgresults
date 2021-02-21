@@ -11,13 +11,14 @@
     "cors": "^2.8.5",
     "vue": "^3.0.5",
     "vue-axios": "^3.2.4",
-    "vue-router": "^4.0.3",
+    "vue-multiselect": "^2.1.6",
+    "vue-router": "^4.0.4",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
-    "sass": "^1.32.7",
-    "vite": "^2.0.0-beta.69"
+    "sass": "^1.32.8",
+    "vite": "^2.0.1"
   }
 }
