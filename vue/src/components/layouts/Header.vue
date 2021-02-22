@@ -15,16 +15,19 @@
                             <router-link to="/" class="nav-link" active-class="active">Начало</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/teams" :class="{'active': menuActive('/teams'), 'nav-link': true} ">Отбори</router-link>
+                            <router-link to="/program" class="nav-link" active-class="active">Програма</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/results" class="nav-link">Резултати</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/tournaments" class="nav-link">Турнири</router-link>
+                            <router-link to="/standings" class="nav-link">Класиране</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/standings" class="nav-link">Класиране</router-link>
+                            <router-link to="/teams" :class="{'active': menuActive('/teams'), 'nav-link': true} ">Отбори</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/tournaments" class="nav-link">Турнири</router-link>
                         </li>
                     </ul>
                 </div>

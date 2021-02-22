@@ -1,0 +1,53 @@
+<template>
+    <section>
+        <h1>Програма</h1>
+
+        <h1>TODO: API</h1>
+
+
+    </section>
+
+</template>
+
+<script>
+
+    import Details from '../../partials/Teams/Details.vue';
+
+
+    export default {
+        name: 'TeamView',
+        components: {
+            Details
+        },
+        data() {
+            return {
+                // id: 0,
+                // loading: true,
+                // url: `/api/teams/${this.$route.params.id}`
+            }
+        },
+        // methods: {
+        //     fetchTeam() {
+        //         this.axios.get(this.url)
+        //             .then((response) => {
+        //                 this.$store.state.content = response.data.data;
+        //                 // this.$store.commit('load');
+        //                 console.log(response.data);
+        //             })
+        //             .then(() => (this.loading = false))
+        //             .catch((error) => (console.log(error)));
+        //     },
+        // },
+        mounted() {
+            // this.fetchTeam();
+            // console.log(`${this.$route.params.id}`);
+        },
+        // computed: {
+        //     item() {
+        //         return this.$store.state.content;
+        //     }
+        // }
+    }
+</script>
+
+<!-- <style src="./assets/scss/_general.scss" lang="scss"></style> -->
