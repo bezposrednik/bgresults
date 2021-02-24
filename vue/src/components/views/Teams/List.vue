@@ -1,35 +1,49 @@
 <template>
     <section>
 
-        <div v-if="loading" style="background: red;">Loading...</div>
+        <div v-if="loading">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
 
         <div v-else>
-            <h1>Teams</h1>
-            <table class="table table-striped">
-                <thead>
+            <!-- <h1>Отбори</h1> -->
+            
+            <Filters></Filters>
+
+            <hr>
+
+            <table class="table table-striped table-hover">
+                <thead class="table-light">
                     <tr>
                         <th>Име</th>
+                        <th>Място</th>
                         <th>Описание</th>
                         <th>Основан</th>
-                        <th>Място</th>
+
                         <th>Лого</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item of teams.data.items" :key="item.id">
+                    <tr v-for="item of items.data.items" :key="item.id">
                         <td>
                             <!-- :to="`/teams/${item.url}`" -->
-                            <router-link :to="{ name: 'TeamView', params: { url: `${item.url}` }}"  class="nav-link">{{ item.name }}</router-link>
+                            <router-link :to="{ name: 'TeamView', params: { url: `${item.url}` }}" class="nav-link">{{
+                                item.name }}</router-link>
                         </td>
+                        <td>{{ item.location }}</td>
                         <!-- <router-link :to="{ name: 'TeamsView', params: { url: this.url }}" class="nav-link">{{ item.name }}</router-link> -->
                         <td>{{ item.description }}</td>
                         <td>{{ item.founded }}</td>
-                        <td>{{ item.location }}</td>
+
                         <td>{{ item.logo }}</td>
                     </tr>
                 </tbody>
             </table>
-            <Pagination :url="this.url" :pagination="this.teams.data.pagination"></Pagination>
+            <Pagination :url="this.url" :pagination="this.items.data.pagination"></Pagination>
         </div>
 
     </section>
@@ -37,26 +51,32 @@
 </template>
 
 <script>
-    import Pagination from '../../partials/Pagination.vue';
+    import Pagination from '../../partials/General/Pagination.vue';
+    import Filters from '../../partials/Teams/Filters.vue';
 
     export default {
         name: 'Teams\List',
         data() {
             return {
-                page: 1,
+                items: [],
+                filters: [],
+                url: `/api/teams`,
                 loading: true,
-                url: `/api/teams`
             }
         },
         components: {
             Pagination,
+            Filters
         },
         methods: {
-            fetchTeams(page = 1) {
-                this.axios.get(`${this.url}/page/${page}`)
+            load() {
+                this.axios.get(this.url)
                     .then((response) => {
-                        this.$store.state.content = response.data;
-                        console.log(response.data);
+                        // this.$store.state.content = response.data;
+                        this.items = response.data;
+                        // console.log(this.items);
+
+                        console.log(this.$route.query);
                         // this.$store.commit('load');
                     })
                     .then(() => (this.loading = false))
@@ -64,13 +84,13 @@
             },
         },
         mounted() {
-            this.fetchTeams();
+            this.load();
         },
-        computed: {
-            teams() {
-                return this.$store.state.content;
-            }
-        }
+        // computed: {
+        //     teams() {
+        //         return this.$store.state.content;
+        //     }
+        // }
     }
 </script>
 

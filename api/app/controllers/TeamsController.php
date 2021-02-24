@@ -2,25 +2,103 @@
 
 namespace Api\Controllers;
 
+use Phalcon\Http\Request;
+
 use Api\Traits\Pagination;
 use Api\Models\Teams;
 
+
 class TeamsController extends ControllerBase
 {
-    public function list($page = 1)
+    public function loadAction()
     {
+        $page = 1;
+        $filters = $this->request->get();
+        $allowed = ['page', 'location_id',  'stadium_id', 'founded_start', 'founded_end'];
+
+        $sql = [];
+        $bind = [];
+        foreach ($filters as $filter => $value) {
+            if (!in_array($filter, $allowed)) continue;
+            switch ($filter) {
+                case 'page':
+                    $page = (int) $value;
+                    break;
+                case 'location_id':
+                    $sql['location_id'] = 'location_id IN ({location_id:array})';
+                    $bind[$filter] = explode(',', $value);
+                    break;
+                case 'stadium_id':
+                    $sql['stadium_id'] = 'stadium_id IN ({stadium_id:array})';
+                    $bind[$filter] = explode(',', $value);
+                    break;
+                case 'founded_start':
+                    $sql['founded_start'] = 'founded >= :founded_start:';
+                    $bind[$filter] = $value;
+                    break;
+                case 'founded_end':
+                    $sql['founded_end'] = 'founded <= :founded_end:';
+                    $bind[$filter] = $value;
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+        }
+
+        // var_dump($bind);
+        // exit();
+
+        /**
+         * Prepare condtions
+         */
+        $conditions = '';
+        $counter = 0;
+        foreach ($sql as $value) {
+            $counter+=1;
+            if($counter === 1) {
+                $conditions .= $value;
+            } else {
+                $conditions .= ' AND ' . $value;
+            }
+        }
+
+        // var_dump($conditions);
+        // exit();
+
+        // var_dump($bind);
+        // exit();
+
+        // exit();
+
+        // $conditions = 'status = :status:';
+        // $bind = ['status' => 1];
+
+
+        // $filters['team'] = $this->request->getQuery('team', 'int');
+
+
+
+        // $email = $request->get('userEmail', 'email', 'some@example.com');
+
+
         $limit = 2;
 
-        if (!(int) $page) {
-            $response = $this->response->setJsonContent(['status' => 'ERROR', 'data'   => []]);
-            return $response;
-        }
+        // if (!(int) $page) {
+        //     $response = $this->response->setJsonContent(['status' => 'ERROR', 'data'   => []]);
+        //     return $response;
+        // }
+
+        // $conditions = 'status = :status:';
+        // $bind = ['status' => 1];
 
         $count = Teams::count("status = 1");
         $pagination = Pagination::generate($limit, $page, $count);
         $teams = Teams::find([
-            'conditions' => 'status = :status:',
-            'bind' => ['status' => 1],
+            'conditions' => $conditions,
+            'bind' => $bind,
             'limit' => $pagination['limit'],
             'offset' => $pagination['offset']
         ]);
@@ -38,6 +116,10 @@ class TeamsController extends ControllerBase
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 
+        // var_dump($data);
+        // exit();
+        
+
         return $response;
     }
 
@@ -54,9 +136,6 @@ class TeamsController extends ControllerBase
         $data['location'] = $item->location->name;
         $data['logo'] = $item->logo;
         $data['stadium'] = $item->stadium->name;
-        
-        // var_dump($data);
-        // exit();
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 

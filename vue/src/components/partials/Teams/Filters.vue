@@ -1,60 +1,44 @@
 <template>
-    <section>
+    <section class="mt-3">
 
-        <div class="row">
-            <div class="col-md-3">
-                По тип:
-                <!-- <v-select :options="['Canada', 'United States']"></v-select> -->
-
-                <select class="form-select" aria-label="Default select example">
-                    <option>Всички</option>
-                    <option value="1" selected>Домакин</option>
-                    <option value="2">Гост</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                По сезон:
-                <select class="form-select" aria-label="Default select example">
-
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>2020/2021</option>
-                    <option value="2">2019/2020</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                По стадион:
-                <select class="form-select" aria-label="Default select example">
-
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>Васил Левски</option>
-                    <option value="2">Българска армия</option>
-                    <option value="3">Георги Аспарухов</option>
-                </select>
+        <div class="card">
+            <div class="card-header">
+                Филтри
             </div>
 
-            <div class="col-md-3">
-                По турнир:
-                <select class="form-select" aria-label="Default select example">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- По място: -->
+                        <!-- <v-select :options="['Canada', 'United States']"></v-select> -->
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>-- Изберете име --</option>
+                            <option value="1">Домакин</option>
+                            <option value="2">Гост</option>
+                        </select>
+                    </div>
 
-                    <!-- <option selected>Всички</option> -->
-                    <option value="1" selected>Шампионат</option>
-                    <option value="2">Купа на България</option>
-                    <option value="3">Супер купа на България</option>
-                </select>
-            </div>
+                    <div class="col-md-4">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>-- Изберете място --</option>
+                            <option value="1">Домакин</option>
+                            <option value="2">Гост</option>
+                        </select>
+                    </div>
 
-            <div class="col-md-3">
-                По дата:
-                <input type="text" class="form-control"> до
-                <input type="text" class="form-control">
-            </div>
-
-            <div class="col-md-3">
-                По голове:
-                <input type="text" class="form-control"> до
-                <input type="text" class="form-control">
+                    <div class="col-md-4">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>-- Изберете стадион --</option>
+                            <option value="1">Домакин</option>
+                            <option value="2">Гост</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
 
     </section>
 
@@ -79,11 +63,11 @@
         },
         data() {
             return {
-                results: [],
-                type: 'all',
-                page: 1,
-                value: null,
-                options: ['list', 'of', 'options']
+                // results: [],
+                // type: 'all',
+                // page: 1,
+                // value: null,
+                // options: ['list', 'of', 'options']
 
             }
         },

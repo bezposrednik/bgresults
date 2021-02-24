@@ -2,7 +2,7 @@
 
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                     data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
@@ -57,11 +57,11 @@
 </script>
 
 <style lang="scss">
-    .active {
+    /* .active {
         background: red;
 
         p {
             color: red;
         }
-    }
+    } */
 </style>

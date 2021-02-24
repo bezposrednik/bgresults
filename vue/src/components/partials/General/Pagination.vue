@@ -1,8 +1,19 @@
 <template>
     <div>
-        <button @click="loadContent('prev')" type="button" class="btn btn-success">Previous</button>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button @click="loadContent('prev')" class="btn btn-success me-md-2" type="button" disabled>Назад</button>
+                    <button @click="loadContent('next')" class="btn btn-success" type="button">Напред</button>
+                  </div>
+            </div>
+        </div>
+
+
+        <!-- <button @click="loadContent('prev')" type="button" class="btn btn-success">Previous</button>
         |
-        <button @click="loadContent('next')" type="button" class="btn btn-success">Next</button>
+        <button @click="loadContent('next')" type="button" class="btn btn-success">Next</button> -->
     </div>
 </template>
 
