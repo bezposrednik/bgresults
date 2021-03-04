@@ -1,19 +1,13 @@
 <template>
     <div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button @click="loadContent('prev')" class="btn btn-success me-md-2" type="button" disabled>Назад</button>
+                    <button @click="loadContent('prev')" class="btn btn-success me-md-2" type="button">Назад</button>
                     <button @click="loadContent('next')" class="btn btn-success" type="button">Напред</button>
-                  </div>
+                </div>
             </div>
         </div>
-
-
-        <!-- <button @click="loadContent('prev')" type="button" class="btn btn-success">Previous</button>
-        |
-        <button @click="loadContent('next')" type="button" class="btn btn-success">Next</button> -->
     </div>
 </template>
 
@@ -21,29 +15,28 @@
     export default {
         name: 'Pagination',
         props: {
+            module: String,
             url: String,
-            pagination: Object
+            data: Object
         },
         methods: {
             loadContent(type) {
-                let api = `${this.url}/page/`;
+                let api = `${this.url}`;
 
                 switch (type) {
                     case 'prev':
-                        api += this.pagination.prev;
+                        api += `?page=${this.data.prev}`;
                         break;
                     case 'next':
-                        api += this.pagination.next;
+                        api += `?page=${this.data.next}`;
                         break;
                     default:
                         break;
                 }
-
                 this.axios.get(api)
                     .then((response) => {
-                        this.$store.state.content = response.data;
-                        // this.$store.commit('load');
-                    }) //Update parent teams
+                        this.$store.state[this.module].items = response.data;
+                    }) 
                     // .then(() => (this.loading = false)) //Update parent loading
                     .catch((error) => (console.log(error)));
 

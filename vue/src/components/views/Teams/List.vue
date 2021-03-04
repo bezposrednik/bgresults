@@ -11,7 +11,7 @@
 
         <div v-else>
             <!-- <h1>Отбори</h1> -->
-            
+
             <Filters></Filters>
 
             <hr>
@@ -43,7 +43,8 @@
                     </tr>
                 </tbody>
             </table>
-            <Pagination :url="this.url" :pagination="this.items.data.pagination"></Pagination>
+
+            <Pagination module="teams" :url="this.url" :data="this.items.data.pagination"></Pagination>
         </div>
 
     </section>
@@ -58,10 +59,10 @@
         name: 'Teams\List',
         data() {
             return {
-                items: [],
+                // items: [],
                 filters: [],
                 url: `/api/teams`,
-                loading: true,
+                loading: true
             }
         },
         components: {
@@ -72,12 +73,10 @@
             load() {
                 this.axios.get(this.url)
                     .then((response) => {
-                        // this.$store.state.content = response.data;
-                        this.items = response.data;
-                        // console.log(this.items);
+                        this.$store.state.teams.items = response.data;
 
-                        console.log(this.$route.query);
-                        // this.$store.commit('load');
+                        
+
                     })
                     .then(() => (this.loading = false))
                     .catch((error) => (console.log(error)));
@@ -86,11 +85,11 @@
         mounted() {
             this.load();
         },
-        // computed: {
-        //     teams() {
-        //         return this.$store.state.content;
-        //     }
-        // }
+        computed: {
+            items() {
+                return this.$store.state.teams.items;
+            }
+        }
     }
 </script>
 

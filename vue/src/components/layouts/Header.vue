@@ -57,11 +57,11 @@
 </script>
 
 <style lang="scss">
-    /* .active {
+    .active {
         background: red;
 
         p {
             color: red;
         }
-    } */
+    }
 </style>

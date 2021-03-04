@@ -9,90 +9,117 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- По място: -->
-                        <!-- <v-select :options="['Canada', 'United States']"></v-select> -->
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>-- Изберете име --</option>
-                            <option value="1">Домакин</option>
-                            <option value="2">Гост</option>
-                        </select>
+                        <Multiselect @select="filter('team_id')" v-model="selected.team_id" mode="tags" placeholder="-- Избери отбори --"
+                            label="name" trackBy="name" valueProp="id" :searchable="true" :options="options.teams">
+                            <template v-slot:option="{ option }">
+                                {{ option.name }}
+                            </template>
+                        </Multiselect>
                     </div>
 
                     <div class="col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+
+                        <Multiselect v-model="selected.location_id" :options="locations" mode="tags"
+                            placeholder="-- Изберете място --" :filterResults="true" :minChars="1" :searchable="true"
+                            :createTag="true" />
+                        <!-- 
+                        <select name="location_id" class="form-select" aria-label="Default select example">
                             <option selected>-- Изберете място --</option>
                             <option value="1">Домакин</option>
                             <option value="2">Гост</option>
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+                        <select name="stadium_id" class="form-select" aria-label="Default select example">
                             <option selected>-- Изберете стадион --</option>
-                            <option value="1">Домакин</option>
-                            <option value="2">Гост</option>
+                            <option value="1">Васил Левски</option>
+                            <option value="2">Българска армия</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
     </section>
 
 </template>
 
 <script>
-    // import Pagination from '../../partials/Pagination.vue';
-    // import Vue from 'vue';
-    // import vSelect from 'vue-select';
-    // import 'vue-select/dist/vue-select.css';
-    // import Multiselect from '@vueform/multiselect'
-    // import Multiselect from 'vue-multiselect'
-
+    import Multiselect from '@vueform/multiselect'
 
     export default {
         props: ['url'],
-        name: 'Partials\Teams\Details',
+        name: 'Filters',
         components: {
-            // Pagination,
-            // vSelect
-            // Multiselect
+            Multiselect
+
         },
         data() {
             return {
-                // results: [],
-                // type: 'all',
-                // page: 1,
-                // value: null,
-                // options: ['list', 'of', 'options']
+                options: {
+                    teams: [],
+                    locations: [],
+                    stadiums: []
+                },
+                selected: {
+                    team_id: [],
+                    location_id: [],
+                    stadium_id: []
+                },
+            }
+        },
+        computed: {
+            teams() {
+                return this.$store.state.teams.options.names;
+            },
+            // locations() {
+            //     return this.$store.state.locations.items;
+            // }
+        },
+        methods: {
+            filter(param) {
+                // console.log(this.selected.team_id.join(','));
+                let api = `/api/teams?${param}=${this.selected.team_id.join(',')}`;
+                this.axios.get(api)
+                    .then((response) => {
+                        this.$store.state.teams.items = response.data;
+                        // console.log(response.data);
+                    })
+                    // .then(() => (this.loading = false))
+                    .catch((error) => (console.log(error)));
+            },
+            getTeams() {
+                let api = `/api/teams/all`;
+                this.axios.get(api)
+                    .then((response) => {
+                        // this.$store.state.teams.options.names = response.data.data;
+                        this.options.teams = response.data.data;
+                    })
+                    // .then(() => (this.loading = false))
+                    .catch((error) => (console.log(error)));
+            },
+            getLocations() {
+                let api = `/api/locations/filters`;
+                this.axios.get(api)
+                    .then((response) => {
+                        this.$store.state.teams.filters.name = response.data;
+                    })
+                    // .then(() => (this.loading = false))
+                    .catch((error) => (console.log(error)));
+            },
+            loadStadiums() {
 
             }
         },
-        methods: {
-            // load(page = 1) {
-            //     let api = `/api/teams/results/${this.url}/${this.type}/page/${page}`;
-            //     this.axios.get(api)
-            //         .then((response) => {
-            //             this.results = response.data.data;
-            //             // this.$store.commit('load');
-            //             console.log(this.results);
-            //         })
-            //         // .then(() => (this.loading = false))
-            //         .catch((error) => (console.log(error)));
-            // }
-        },
         mounted() {
-            // console.log(this.url);
-            // this.load();
+            this.getTeams();
+
+            // console.log(this.teams);
+            // this.getLocations();
         }
     }
 </script>
 
 
-<style>
-
-
-</style>
+<style src="@vueform/multiselect/themes/default.css"></style>

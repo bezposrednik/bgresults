@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import Pagination from '../../partials/Pagination.vue';
+    import Pagination from '../../partials/General/Pagination.vue';
 
     export default {
         props: ['url'],

@@ -19,6 +19,7 @@ class Teams extends ModelBase
     public $location_id;
     public $logo;
     public $status;
+    public $created;
 
     public function initialize()
     {
@@ -30,6 +31,19 @@ class Teams extends ModelBase
 
         $this->hasMany('id', Results::class, 'team1_id', ['alias' => 'team1_results']);
         $this->hasMany('id', Results::class, 'team2_id', ['alias' => 'team2_results']);
+    }
+
+    public static function getNames() {
+        $conditions = 'status = :status:';
+        $bind = ['status' => 1];
+
+        $data = $this::find(['conditions' => $conditions, 'bind' => $bind, 'column' => 'name']);
+
+        return $data;
+
+        // var_dump($data->toArray*());
+        // exit();
+
     }
 
     public function getResults($limit = 10, $page = 1, $date_start = null, $date_end = null)
@@ -70,4 +84,6 @@ class Teams extends ModelBase
 
         return ['pagination' => $pagination,'data' => $data];
     }
+
+
 }

@@ -2,19 +2,16 @@
 
 namespace Api\Controllers;
 
-use Phalcon\Http\Request;
-
 use Api\Traits\Pagination;
 use Api\Models\Teams;
 
-
 class TeamsController extends ControllerBase
 {
-    public function loadAction()
+    public function getItemsAction()
     {
         $page = 1;
         $filters = $this->request->get();
-        $allowed = ['page', 'location_id',  'stadium_id', 'founded_start', 'founded_end'];
+        $allowed = ['page', 'team_id', 'location_id',  'stadium_id', 'founded_start', 'founded_end'];
 
         $sql = [];
         $bind = [];
@@ -23,6 +20,10 @@ class TeamsController extends ControllerBase
             switch ($filter) {
                 case 'page':
                     $page = (int) $value;
+                    break;
+                case 'team_id':
+                    $sql['team_id'] = 'id IN ({team_id:array})';
+                    $bind[$filter] = explode(',', $value);
                     break;
                 case 'location_id':
                     $sql['location_id'] = 'location_id IN ({location_id:array})';
@@ -45,11 +46,7 @@ class TeamsController extends ControllerBase
                     # code...
                     break;
             }
-
         }
-
-        // var_dump($bind);
-        // exit();
 
         /**
          * Prepare condtions
@@ -57,44 +54,17 @@ class TeamsController extends ControllerBase
         $conditions = '';
         $counter = 0;
         foreach ($sql as $value) {
-            $counter+=1;
-            if($counter === 1) {
+            $counter += 1;
+            if ($counter === 1) {
                 $conditions .= $value;
             } else {
                 $conditions .= ' AND ' . $value;
             }
         }
 
-        // var_dump($conditions);
-        // exit();
+        $limit = $this->settings->teams->pagination->limit;
 
-        // var_dump($bind);
-        // exit();
-
-        // exit();
-
-        // $conditions = 'status = :status:';
-        // $bind = ['status' => 1];
-
-
-        // $filters['team'] = $this->request->getQuery('team', 'int');
-
-
-
-        // $email = $request->get('userEmail', 'email', 'some@example.com');
-
-
-        $limit = 2;
-
-        // if (!(int) $page) {
-        //     $response = $this->response->setJsonContent(['status' => 'ERROR', 'data'   => []]);
-        //     return $response;
-        // }
-
-        // $conditions = 'status = :status:';
-        // $bind = ['status' => 1];
-
-        $count = Teams::count("status = 1");
+        $count = Teams::count('status = 1');
         $pagination = Pagination::generate($limit, $page, $count);
         $teams = Teams::find([
             'conditions' => $conditions,
@@ -116,12 +86,22 @@ class TeamsController extends ControllerBase
 
         $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 
-        // var_dump($data);
-        // exit();
-        
+        return $response;
+    }
+
+    public function getAllItemsAction() 
+    {
+        $conditions = 'status = :status:';
+        $bind = ['status' => 1];
+        $columns = ['id', 'name'];
+
+        $data = Teams::find(['conditions' => $conditions, 'bind' => $bind, 'columns' => $columns]);
+
+        $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
 
         return $response;
     }
+
 
     public function detailsAction($url)
     {
@@ -194,4 +174,5 @@ class TeamsController extends ControllerBase
     {
         $team = Teams::findFirst(['conditions' => 'id = :id:', 'bind' => ['id' => $id]]);
     }
+
 }

@@ -37,7 +37,7 @@
 
 <script>
     // import HomeHeader from './components/Header'
-    import Pagination from '../../partials/Pagination.vue';
+    import Pagination from '../../partials/General/Pagination.vue';
 
     export default {
         name: 'Teams',

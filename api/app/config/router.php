@@ -13,7 +13,8 @@ $teams->setHandler(new Teams());
 $teams->setPrefix('/api');
 
 // /api/teams?founded_start=1920&founded_end=1980&location=1&stadium=2&page=2
-$teams->get('/teams', 'loadAction');
+$teams->get('/teams', 'getItemsAction');
+$teams->get('/teams/all', 'getAllItemsAction');
 
 
 
