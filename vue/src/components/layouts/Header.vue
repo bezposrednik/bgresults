@@ -58,10 +58,10 @@
 
 <style lang="scss">
     .active {
-        background: red;
+        /* background: red;
 
         p {
             color: red;
-        }
+        } */
     }
 </style>

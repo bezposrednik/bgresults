@@ -40,10 +40,6 @@ class Teams extends ModelBase
         $data = $this::find(['conditions' => $conditions, 'bind' => $bind, 'column' => 'name']);
 
         return $data;
-
-        // var_dump($data->toArray*());
-        // exit();
-
     }
 
     public function getResults($limit = 10, $page = 1, $date_start = null, $date_end = null)

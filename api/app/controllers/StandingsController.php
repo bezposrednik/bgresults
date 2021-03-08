@@ -3,10 +3,12 @@
 namespace Api\Controllers;
 
 use Api\Traits\Pagination;
-use Api\Models\Teams;
+use Api\Models\Standings;
 
 class StandingsController extends ControllerBase
 {
+
+
     public function list($page = 1)
     {
         $limit = 2;

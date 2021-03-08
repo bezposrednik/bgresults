@@ -2,14 +2,10 @@
     <section>
 
         <!-- <div v-if="loading" style="background: red;">Loading...</div> -->
-
         <!-- <div v-else> -->
         <Details :url="this.$route.params.url"></Details>
 
-        <Filters></Filters>
-
         <Results :url="this.$route.params.url"></Results>
-
         <!-- </div> -->
 
     </section>
