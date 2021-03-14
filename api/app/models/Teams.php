@@ -10,7 +10,6 @@ use Api\Models\Stadiums;
 
 class Teams extends ModelBase
 {
-
     public $id;
     public $url;
     public $name;

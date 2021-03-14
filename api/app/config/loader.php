@@ -11,9 +11,9 @@ $loader->registerDirs(
 );
 
 $loader->registerNamespaces([
-    'Api\Models'    => $config->application->modelsDir,
-    'Api\Traits'    => $config->application->traitsDir,
-    'Api\Controllers' => $config->application->controllersDir,
+    'Api\Models'        => $config->application->modelsDir,
+    'Api\Controllers'   => $config->application->controllersDir,
+    'Api\Traits'        => $config->application->traitsDir
 ]);
 
 $loader->register();

@@ -39,7 +39,6 @@
 
 <script>
     import Multiselect from '@vueform/multiselect'
-
     export default {
         props: ['url'],
         name: 'Filters',
@@ -73,19 +72,19 @@
                     .catch((error) => (console.log(error)));
             },
             getTeams() {
-                const api = `/api/teams/all`;
+                const api = `/api/teams/list`;
                 this.axios.get(api)
                     .then((response) => this.options.teams = response.data.data)
                     .catch((error) => (console.log(error)));
             },
             getLocations() {
-                const api = `/api/locations/all`;
+                const api = `/api/locations/list`;
                 this.axios.get(api)
                     .then((response) => this.options.locations = response.data.data)
                     .catch((error) => (console.log(error)));
             },
             getStadiums() {
-                const api = `/api/stadiums/all`;
+                const api = `/api/stadiums/list`;
                 this.axios.get(api)
                     .then((response) => this.options.stadiums = response.data.data)
                     .catch((error) => (console.log(error)));

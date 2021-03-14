@@ -12,9 +12,6 @@ class Tournaments extends ModelBase
     public $name;
     public $description;
 
-    /**
-     * Initialize method for model.
-     */
     public function initialize()
     {
         $this->setSchema("bgresults");

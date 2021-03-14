@@ -7,7 +7,7 @@ use Api\Models\Locations;
 
 class LocationsController extends ControllerBase
 {
-    public function getAllItemsAction()
+    public function listAction()
     {
         $conditions = 'status = :status:';
         $bind = ['status' => 1];

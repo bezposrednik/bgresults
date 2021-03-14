@@ -1,8 +1,6 @@
 <template>
     <section>
-
         <h1>Детайли</h1>
-
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -25,9 +23,7 @@
                 </tr>
             </tbody>
         </table>
-
     </section>
-
 </template>
 
 <script>
@@ -46,7 +42,7 @@
                     .then((response) => {
                         this.item = response.data.data;
                         // this.$store.commit('load');
-                        // console.log(response.data);
+                        console.log(response.data);
                     })
                     // .then(() => (this.loading = false))
                     .catch((error) => (console.log(error)));

@@ -1,7 +1,6 @@
 <template>
     <section>
         <h2>Резултати</h2>
-
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -31,17 +30,12 @@
                 </tr>
             </tbody>
         </table>
-
         <Pagination :url="`${this.url}/${this.type}`" :pagination="this.results.pagination"></Pagination>
-
-
     </section>
-
 </template>
 
 <script>
     import Pagination from '../../partials/General/Pagination.vue';
-
     export default {
         props: ['url'],
         name: 'Partials\Teams\Details',
@@ -63,7 +57,7 @@
                     .then((response) => {
                         this.results = response.data.data;
                         // this.$store.commit('load');
-                        console.log(this.results);
+                        // console.log(this.results);
                     })
                     // .then(() => (this.loading = false))
                     .catch((error) => (console.log(error)));

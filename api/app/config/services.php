@@ -9,7 +9,6 @@ use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Manager as SessionManager;
 // use Phalcon\Url as UrlResolver;
 
-
 $di->setShared('response', function () {
     $response = new \Phalcon\Http\Response();
     $response->setContentType('application/json', 'utf-8');

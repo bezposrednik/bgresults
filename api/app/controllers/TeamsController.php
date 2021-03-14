@@ -5,9 +5,15 @@ namespace Api\Controllers;
 use Api\Traits\Pagination;
 use Api\Models\Teams;
 
+use Phalcon\Cache;
+
+use Phalcon\Cache\CacheFactory;
+use Phalcon\Cache\AdapterFactory;
+use Phalcon\Storage\SerializerFactory;
+
 class TeamsController extends ControllerBase
 {
-    public function getItemsAction()
+    public function indexAction()
     {
         $page = 1;
         $filters = $this->request->get();
@@ -89,19 +95,33 @@ class TeamsController extends ControllerBase
         return $response;
     }
 
-    public function getAllItemsAction() 
+    public function listAction()
     {
         $conditions = 'status = :status:';
         $bind = ['status' => 1];
         $columns = ['id', 'name'];
-
         $data = Teams::find(['conditions' => $conditions, 'bind' => $bind, 'columns' => $columns]);
 
-        $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
+        try {
+            /**
+             * Caching data
+             */
+            $options = ['defaultSerializer' => 'Json', 'lifetime' => 7200];
+            $serializerFactory = new SerializerFactory();
+            $adapterFactory    = new AdapterFactory($serializerFactory, $options);
+            $cacheFactory = new CacheFactory($adapterFactory);
+            $cacheOptions = ['adapter' => 'apcu', 'options' => ['prefix' => 'teams']];
+            $cache = $cacheFactory->load($cacheOptions);
 
+            $cache->set('data', $data);
+            $data = $cache->get('data');
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
+
+        $response = $this->response->setJsonContent(['status' => 'FOUND', 'data' => $data]);
         return $response;
     }
-
 
     public function detailsAction($url)
     {
@@ -174,5 +194,4 @@ class TeamsController extends ControllerBase
     {
         $team = Teams::findFirst(['conditions' => 'id = :id:', 'bind' => ['id' => $id]]);
     }
-
 }
